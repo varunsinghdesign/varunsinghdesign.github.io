@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varun Singh — Product Designer</title>
+<meta name="description" content="Varun Singh is a Product Designer who turns complex enterprise systems — insurance, supply chain, pharma — into interfaces people can actually read.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#131a24;          /* deep ink navy */
+    --ink-2:#3a4656;
+    --ink-3:#6b7686;
+    --paper:#f3efe6;        /* warm off-white */
+    --paper-2:#faf8f2;
+    --surface:#ffffff;
+    --line:#e0dacd;
+    --line-2:#cfc8b8;
+    --signal:#c8621f;       /* burnt amber — single accent */
+    --signal-soft:#f6e7d6;
+    --steel:#2c4a6e;        /* schematic blue, used sparingly */
+    --steel-soft:#e5edf4;
+    --disp:"Fraunces",Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  ::selection{background:var(--signal);color:#fff}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--signal)}
+  .eyebrow.steel{color:var(--steel)}
+  .eyebrow.muted{color:var(--ink-3)}
+
+  /* ---------- top nav ---------- */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,239,230,.82);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+  .nav.scrolled{border-bottom:1px solid var(--line);background:rgba(243,239,230,.94)}
+  .nav-in{max-width:1180px;margin:0 auto;padding:16px 40px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+  .brand .mk{width:26px;height:26px;flex-shrink:0}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-2);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--signal)}
+  .nav-cta{font-size:14px;font-weight:600;padding:9px 18px;border:1px solid var(--ink);border-radius:999px;text-decoration:none;transition:all .2s}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:150px 0 40px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero h1{font-family:var(--disp);font-weight:500;font-size:clamp(38px,5.6vw,74px);line-height:1.03;letter-spacing:-1.5px;margin:22px 0 0}
+  .hero h1 em{font-style:italic;color:var(--signal)}
+  .hero .sub{font-size:20px;color:var(--ink-2);line-height:1.55;max-width:40ch;margin-top:26px}
+  .hero-meta{display:flex;gap:40px;margin-top:38px;padding-top:26px;border-top:1px solid var(--line-2)}
+  .hero-meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .hero-meta .v{font-size:15px;font-weight:600;margin-top:6px;line-height:1.4}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15.5px;padding:14px 26px;border-radius:999px;text-decoration:none;transition:all .2s;cursor:pointer;border:1px solid transparent}
+  .btn-solid{background:var(--ink);color:var(--paper)}
+  .btn-solid:hover{background:var(--signal)}
+  .btn-ghost{border-color:var(--line-2);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+
+  /* schematic hero art */
+  .schematic{position:relative;aspect-ratio:1/1.02}
+  .schematic svg{width:100%;height:100%;overflow:visible}
+  .sch-node{fill:var(--surface);stroke:var(--line-2);stroke-width:1.5}
+  .sch-line{stroke:var(--line-2);stroke-width:1.5;fill:none}
+  .sch-live{stroke:var(--signal);stroke-width:2;fill:none;stroke-dasharray:6 6}
+  .sch-fill{fill:var(--signal)}
+  .sch-lbl{font-family:var(--mono);font-size:9.5px;fill:var(--ink-3);letter-spacing:.06em}
+  .sch-dot{fill:var(--steel)}
+  @keyframes flow{to{stroke-dashoffset:-24}}
+  .sch-live{animation:flow 1.4s linear infinite}
+  @media(prefers-reduced-motion:reduce){.sch-live{animation:none}}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .schematic{max-width:420px;margin:0 auto}
+  }
+
+  /* ---------- marquee of domains ---------- */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:70px;overflow:hidden;background:var(--paper-2)}
+  .strip-track{display:flex;gap:0;white-space:nowrap;animation:marq 34s linear infinite}
+  @media(prefers-reduced-motion:reduce){.strip-track{animation:none;flex-wrap:wrap}}
+  .strip-track span{font-family:var(--disp);font-size:22px;font-weight:400;padding:20px 30px;color:var(--ink-2);display:inline-flex;align-items:center;gap:30px}
+  .strip-track span::after{content:"◆";font-size:8px;color:var(--signal)}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* ---------- section shell ---------- */
+  section{padding:100px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:52px}
+  h2.sec{font-family:var(--disp);font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.8px;margin-top:14px;max-width:18ch}
+  .sec-note{font-size:16px;color:var(--ink-2);max-width:34ch;line-height:1.55}
+
+  /* ---------- approach: three stances ---------- */
+  #approach{background:var(--ink);color:var(--paper);position:relative}
+  #approach h2.sec{color:var(--paper)}
+  #approach .eyebrow{color:var(--signal)}
+  .stances{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:10px;border-top:1px solid rgba(255,255,255,.14)}
+  .stance{padding:38px 30px 34px;border-bottom:1px solid rgba(255,255,255,.14);border-right:1px solid rgba(255,255,255,.14)}
+  .stance:nth-child(3n){border-right:none}
+  .stance .n{font-family:var(--mono);font-size:12px;color:var(--signal);letter-spacing:.1em}
+  .stance h3{font-family:var(--disp);font-weight:500;font-size:24px;margin:18px 0 12px;letter-spacing:-.3px;color:#fff}
+  .stance p{font-size:15.5px;color:rgba(243,239,230,.72);line-height:1.6}
+  @media(max-width:820px){.stances{grid-template-columns:1fr}.stance{border-right:none}}
+
+  /* ---------- work / projects ---------- */
+  .work-list{display:flex;flex-direction:column;gap:26px}
+  .proj{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:box-shadow .3s,transform .3s,border-color .3s;position:relative}
+  .proj:hover{box-shadow:0 26px 60px -30px rgba(19,26,36,.4);border-color:var(--line-2);transform:translateY(-3px)}
+  .proj-grid{display:grid;grid-template-columns:1fr 1.02fr;align-items:stretch;min-height:440px}
+  .proj-vis.img-panel{--img-h:5766px}
+  .proj-vis.img-panel.med{--img-h:3170px}
+  .proj.flip .proj-grid{grid-template-columns:1.02fr 1fr}
+  .proj.flip .proj-txt{order:2}
+  .proj-txt{padding:44px 46px 42px;display:flex;flex-direction:column}
+  .proj-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--steel);margin-bottom:20px}
+  .proj-tag .live{width:7px;height:7px;border-radius:50%;background:var(--signal)}
+  .proj h3{font-family:var(--disp);font-weight:500;font-size:clamp(26px,2.7vw,34px);line-height:1.08;letter-spacing:-.5px}
+  .proj .role{font-size:14px;color:var(--ink-3);margin-top:8px;font-weight:500}
+  .proj .desc{font-size:16.5px;color:var(--ink-2);line-height:1.6;margin-top:18px}
+  .proj-outcome{display:flex;gap:30px;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+  .proj-outcome .big{font-family:var(--disp);font-weight:600;font-size:32px;color:var(--signal);line-height:1;letter-spacing:-1px}
+  .proj-outcome .cap{font-size:12.5px;color:var(--ink-3);margin-top:7px;line-height:1.35;max-width:15ch}
+  .proj-links{margin-top:auto;padding-top:28px;display:flex;gap:20px;align-items:center}
+  .proj-link{font-weight:600;font-size:15px;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:gap .2s,color .2s}
+  .proj-link:hover{color:var(--signal);gap:11px}
+  .proj-link.muted{color:var(--ink-3);font-weight:500;cursor:default}
+  .proj-link.muted:hover{color:var(--ink-3);gap:7px}
+
+  /* visual side — fixed window; tall case-study image scrolls on hover */
+  .proj-vis{background:var(--paper-2);position:relative;overflow:hidden;display:flex;align-items:stretch;justify-content:center}
+  .proj-vis .frame{position:absolute;inset:0;overflow:hidden}
+  .proj-vis .frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;pointer-events:none;background:linear-gradient(to bottom,rgba(250,248,242,0),var(--paper-2))}
+  .proj-vis img{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:88%;height:auto;transition:top 9s ease}
+  .proj:hover .proj-vis img{top:calc(-1 * (var(--img-h, 3000px) - 300px))}
+  .proj-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);background:rgba(255,255,255,.85);border:1px solid var(--line);padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;opacity:1;transition:opacity .3s}
+  .proj:hover .proj-hint{opacity:0}
+
+  /* schematic placeholder visuals for text-only projects */
+  .mini-sch{width:100%;height:100%;min-height:340px;display:flex;align-items:center;justify-content:center;padding:34px;background:
+    linear-gradient(var(--paper-2),var(--paper-2)) padding-box,
+    repeating-linear-gradient(0deg,transparent 0 27px,var(--line) 27px 28px),
+    repeating-linear-gradient(90deg,transparent 0 27px,var(--line) 27px 28px)}
+  .mini-sch svg{max-width:320px;width:100%}
+
+  @media(max-width:860px){
+    .proj-grid,.proj.flip .proj-grid{grid-template-columns:1fr;min-height:0}
+    .proj.flip .proj-txt{order:0}
+    .proj-vis{min-height:300px;order:-1}
+    .proj-vis.img-panel{height:300px}
+    .proj:hover .proj-vis img{top:14px}
+    .proj-txt{padding:34px 30px}
+    .mini-sch{min-height:300px}
+  }
+
+  /* ---------- also shipped / secondary work ---------- */
+  .also{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+  .also-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 28px;transition:border-color .25s,transform .25s}
+  .also-card:hover{border-color:var(--signal);transform:translateY(-3px)}
+  .also-card .loc{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .also-card h4{font-family:var(--disp);font-weight:500;font-size:21px;margin:14px 0 10px;letter-spacing:-.3px;line-height:1.18}
+  .also-card p{font-size:15px;color:var(--ink-2);line-height:1.55}
+  .also-card .res{margin-top:16px;font-weight:600;font-size:14px;color:var(--signal);display:inline-flex;align-items:center;gap:8px}
+  @media(max-width:820px){.also{grid-template-columns:1fr}}
+
+  /* ---------- capabilities ---------- */
+  #skills{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+  .cap-col h3{font-family:var(--disp);font-weight:500;font-size:20px;margin-bottom:18px;letter-spacing:-.3px;padding-bottom:14px;border-bottom:1px solid var(--line-2)}
+  .cap-tags{display:flex;flex-wrap:wrap;gap:9px}
+  .tag{font-size:13.5px;font-weight:500;padding:8px 15px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2);transition:all .2s}
+  .tag:hover{border-color:var(--signal);color:var(--ink)}
+  .tools-row{display:flex;flex-wrap:wrap;gap:11px;margin-top:6px}
+  .tool{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;padding:7px 13px;border:1px solid var(--line-2);border-radius:8px;color:var(--ink-2);background:var(--surface)}
+  @media(max-width:820px){.cap-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ---------- about / credentials ---------- */
+  .about-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
+  .about-lead{font-family:var(--disp);font-weight:400;font-size:clamp(22px,2.6vw,30px);line-height:1.4;letter-spacing:-.4px;color:var(--ink)}
+  .about-lead em{font-style:italic;color:var(--signal)}
+  .about-body{font-size:16.5px;color:var(--ink-2);line-height:1.7;margin-top:26px}
+  .about-body p+p{margin-top:16px}
+  .cred{border-left:2px solid var(--signal);padding-left:22px}
+  .cred-item{padding:16px 0;border-bottom:1px solid var(--line)}
+  .cred-item:last-child{border-bottom:none}
+  .cred-item .yr{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-3)}
+  .cred-item h4{font-family:var(--disp);font-weight:500;font-size:18px;margin:6px 0 3px;letter-spacing:-.2px}
+  .cred-item p{font-size:14px;color:var(--ink-2)}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:38px}}
+
+  /* ---------- contact ---------- */
+  #contact{background:var(--ink);color:var(--paper);text-align:center;padding:120px 0}
+  #contact .eyebrow{color:var(--signal)}
+  #contact h2{font-family:var(--disp);font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.05;letter-spacing:-1px;margin:20px auto 0;max-width:16ch;color:#fff}
+  #contact h2 em{font-style:italic;color:var(--signal)}
+  .contact-mail{display:inline-block;margin-top:36px;font-family:var(--disp);font-size:clamp(20px,3vw,30px);color:var(--paper);text-decoration:none;border-bottom:1.5px solid rgba(243,239,230,.35);padding-bottom:5px;transition:border-color .25s,color .25s}
+  .contact-mail:hover{color:var(--signal);border-color:var(--signal)}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+  .clink{font-size:14.5px;font-weight:500;color:rgba(243,239,230,.85);text-decoration:none;padding:11px 22px;border:1px solid rgba(255,255,255,.2);border-radius:999px;transition:all .2s}
+  .clink:hover{border-color:var(--signal);color:#fff;background:rgba(200,98,31,.14)}
+
+  footer{background:var(--ink);color:rgba(243,239,230,.5);padding:30px 0 44px;border-top:1px solid rgba(255,255,255,.1)}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13.5px}
+  .foot-in .mono{font-family:var(--mono);letter-spacing:.04em}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  :focus-visible{outline:2.5px solid var(--signal);outline-offset:3px;border-radius:4px}
+
+  @media(max-width:560px){
+    .wrap,.nav-in{padding-left:22px;padding-right:22px}
+    .hero{padding-top:120px}
+    section{padding:70px 0}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:14px}
+    .hero-meta{flex-wrap:wrap;gap:24px}
+  }
+
+  /* GitHub-ready self-contained project previews */
+  .proj-vis.preview-img{
+    min-height:340px;
+    padding:28px;
+    align-items:center;
+  }
+  .proj-vis.preview-img img{
+    position:relative;
+    top:auto;
+    left:auto;
+    transform:none;
+    width:100%;
+    max-height:360px;
+    object-fit:contain;
+    border-radius:14px;
+    border:1px solid var(--line);
+    box-shadow:0 14px 38px rgba(19,26,36,.10);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .proj:hover .proj-vis.preview-img img{
+    top:auto;
+    transform:translateY(-3px) scale(1.01);
+    box-shadow:0 20px 48px rgba(19,26,36,.14);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand" aria-label="Varun Singh — home">
+      <svg class="mk" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="5" stroke="#131a24" stroke-width="1.6"/>
+        <path d="M6 8 L13 18 L20 8" stroke="#c8621f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="13" cy="18" r="1.6" fill="#131a24"/>
+      </svg>
+      Varun Singh
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#skills">Capabilities</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Product Designer · M.Des, IISc Bengaluru</div>
+        <h1>I design <em>clarity</em> into complex systems.</h1>
+        <p class="sub">Insurance portals, supply-chain platforms, pharma dashboards, Gen-AI tools — I take dense, high-stakes enterprise data and turn it into interfaces people can actually read and act on.</p>
+        <div class="hero-meta">
+          <div><div class="k">Based in</div><div class="v">Bengaluru, IN</div></div>
+          <div><div class="k">Now</div><div class="v">UX Designer, HCLTech</div></div>
+          <div><div class="k">Focus</div><div class="v">B2B SaaS &amp; data UX</div></div>
+        </div>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-solid">See the work
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Contact</a>
+        </div>
+      </div>
+
+      <!-- signature: a schematic that resolves into a clean readout -->
+      <div class="schematic reveal" aria-hidden="true">
+        <svg viewBox="0 0 400 408">
+          <!-- messy input side -->
+          <text class="sch-lbl" x="4" y="26">RAW SIGNALS</text>
+          <rect class="sch-node" x="4" y="38" width="70" height="26" rx="5"/>
+          <rect class="sch-node" x="4" y="82" width="70" height="26" rx="5"/>
+          <rect class="sch-node" x="4" y="126" width="70" height="26" rx="5"/>
+          <rect class="sch-node" x="4" y="170" width="70" height="26" rx="5"/>
+          <rect class="sch-node" x="4" y="214" width="70" height="26" rx="5"/>
+          <circle class="sch-dot" cx="18" cy="51" r="2.5"/><circle class="sch-dot" cx="18" cy="95" r="2.5"/>
+          <circle class="sch-dot" cx="18" cy="139" r="2.5"/><circle class="sch-dot" cx="18" cy="183" r="2.5"/>
+          <circle class="sch-dot" cx="18" cy="227" r="2.5"/>
+
+          <!-- converging lines -->
+          <path class="sch-line" d="M74 51 C130 51 140 150 190 150"/>
+          <path class="sch-line" d="M74 95 C130 95 150 155 190 155"/>
+          <path class="sch-live" d="M74 139 C140 139 150 160 190 160"/>
+          <path class="sch-line" d="M74 183 C130 183 150 165 190 165"/>
+          <path class="sch-line" d="M74 227 C130 227 150 170 190 170"/>
+
+          <!-- the design node -->
+          <rect x="190" y="128" width="66" height="66" rx="12" fill="#131a24"/>
+          <path d="M206 150 L223 172 L240 150" stroke="#c8621f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="223" cy="172" r="2.2" fill="#f3efe6"/>
+          <text class="sch-lbl" x="190" y="216" fill="#c8621f">DESIGN</text>
+
+          <!-- resolved readout -->
+          <text class="sch-lbl" x="286" y="26">CLEAR OUTPUT</text>
+          <rect class="sch-node" x="286" y="38" width="110" height="150" rx="10"/>
+          <rect class="sch-fill" x="300" y="58" width="34" height="8" rx="4"/>
+          <rect x="300" y="76" width="82" height="6" rx="3" fill="#e0dacd"/>
+          <rect x="300" y="90" width="66" height="6" rx="3" fill="#e0dacd"/>
+          <!-- tiny bar chart -->
+          <rect x="300" y="118" width="12" height="52" rx="2" fill="#e5edf4" stroke="#2c4a6e" stroke-width="1"/>
+          <rect x="318" y="132" width="12" height="38" rx="2" fill="#e5edf4" stroke="#2c4a6e" stroke-width="1"/>
+          <rect x="336" y="108" width="12" height="62" rx="2" fill="#c8621f"/>
+          <rect x="354" y="140" width="12" height="30" rx="2" fill="#e5edf4" stroke="#2c4a6e" stroke-width="1"/>
+          <path class="sch-live" d="M256 161 C270 161 274 113 286 113"/>
+
+          <!-- baseline caption -->
+          <text class="sch-lbl" x="4" y="270">research → IA → flows → system → shipped screens</text>
+          <line x1="4" y1="284" x2="396" y2="284" stroke="#cfc8b8" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- domain marquee -->
+  <div class="strip" aria-hidden="true">
+    <div class="strip-track">
+      <span>Health Insurance</span><span>Supply Chain</span><span>Cloud Assessment</span><span>Pharma Analytics</span><span>Gen-AI Chatbots</span><span>Finance BI</span>
+      <span>Health Insurance</span><span>Supply Chain</span><span>Cloud Assessment</span><span>Pharma Analytics</span><span>Gen-AI Chatbots</span><span>Finance BI</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== WORK ===== -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2 class="sec">Systems made legible.</h2>
+      </div>
+      <p class="sec-note">Four projects where the hard part wasn't the pixels — it was making a tangled workflow feel obvious.</p>
+    </div>
+
+    <div class="work-list">
+
+      <!-- VitalShield -->
+      <article class="proj reveal">
+        <div class="proj-grid">
+          <div class="proj-txt">
+            <span class="proj-tag"><span class="live"></span> Vertical B2B SaaS · Case study</span>
+            <h3>VitalShield — insurance broking, faster and more human</h3>
+            <div class="role">Sole UX Designer · Research, IA, Figma prototype</div>
+            <p class="desc">An end-to-end portal for health-insurance brokers. I turned three sharp user pains into core flows — a triage dashboard, a plan-comparison rater, and compliance-safe personalization — all backed by a reusable design system.</p>
+            <div class="proj-outcome">
+              <div><div class="big">13</div><div class="cap">screens across the full broker flow</div></div>
+              <div><div class="big">3→1</div><div class="cap">pains resolved into one clear system</div></div>
+            </div>
+            <div class="proj-links">
+              <a class="proj-link" href="vitalshield-case-study.html">Read the case study
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="proj-vis" aria-label="VitalShield schematic preview">
+            <div class="mini-sch">
+              <svg viewBox="0 0 320 300" fill="none" aria-hidden="true">
+                <!-- browser chrome -->
+                <rect x="10" y="10" width="300" height="280" rx="12" fill="#fff" stroke="#e0dacd" stroke-width="1.5"/>
+                <rect x="10" y="10" width="300" height="34" rx="12" fill="#131a24"/>
+                <circle cx="26" cy="27" r="3.5" fill="#c8621f"/><circle cx="38" cy="27" r="3.5" fill="#e0dacd"/><circle cx="50" cy="27" r="3.5" fill="#e0dacd"/>
+                <text x="70" y="31" font-family="JetBrains Mono, monospace" font-size="9" fill="#f3efe6">vitalshield — dashboard</text>
+                <!-- sidebar -->
+                <rect x="22" y="56" width="52" height="222" rx="8" fill="#f3efe6"/>
+                <rect x="30" y="66" width="36" height="7" rx="3" fill="#c8621f"/>
+                <rect x="30" y="84" width="36" height="6" rx="3" fill="#cfc8b8"/>
+                <rect x="30" y="98" width="36" height="6" rx="3" fill="#cfc8b8"/>
+                <rect x="30" y="112" width="36" height="6" rx="3" fill="#cfc8b8"/>
+                <!-- attention card -->
+                <rect x="84" y="56" width="214" height="52" rx="8" fill="#f6e7d6" stroke="#c8621f" stroke-width="1"/>
+                <text x="94" y="76" font-family="JetBrains Mono, monospace" font-size="8" fill="#c8621f">NEEDS YOUR ATTENTION</text>
+                <rect x="94" y="84" width="140" height="6" rx="3" fill="#131a24" opacity=".7"/>
+                <rect x="94" y="94" width="90" height="6" rx="3" fill="#3a4656" opacity=".5"/>
+                <!-- compare rows -->
+                <rect x="84" y="120" width="214" height="158" rx="8" fill="#faf8f2" stroke="#e0dacd" stroke-width="1"/>
+                <rect x="94" y="132" width="60" height="130" rx="6" fill="#fff" stroke="#e0dacd"/>
+                <rect x="160" y="132" width="60" height="130" rx="6" fill="#fff" stroke="#2c4a6e" stroke-width="1.5"/>
+                <rect x="226" y="132" width="60" height="130" rx="6" fill="#fff" stroke="#e0dacd"/>
+                <rect x="168" y="140" width="44" height="6" rx="3" fill="#c8621f"/>
+                <rect x="102" y="150" width="44" height="5" rx="2.5" fill="#e0dacd"/>
+                <rect x="168" y="152" width="44" height="5" rx="2.5" fill="#cfc8b8"/>
+                <rect x="234" y="150" width="44" height="5" rx="2.5" fill="#e0dacd"/>
+                <rect x="102" y="164" width="30" height="5" rx="2.5" fill="#e0dacd"/>
+                <rect x="168" y="166" width="30" height="5" rx="2.5" fill="#cfc8b8"/>
+                <rect x="234" y="164" width="30" height="5" rx="2.5" fill="#e0dacd"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pharma Gen-AI chatbot -->
+      <article class="proj flip reveal">
+        <div class="proj-grid">
+          <div class="proj-txt">
+            <span class="proj-tag"><span class="live"></span> Gen-AI · Pharmaceutical</span>
+            <h3>AI Sales Assistant for pharmaceutical consultants</h3>
+            <div class="role">UX Designer · Personas, journeys, wireframes, hi-fi UI</div>
+            <p class="desc">Sales reps needed critical product, compliance and analytics answers instantly — without leaving the field. I refined fuzzy requirements into personas and journeys, then designed a Gen-AI chatbot that made the in-house learning platform something people actually opened.</p>
+            <div class="proj-outcome">
+              <div><div class="big">30→85%</div><div class="cap">adoption of the learning platform</div></div>
+              <div><div class="big">65%</div><div class="cap">reduction in time-to-answer</div></div>
+            </div>
+            <div class="proj-links">
+              <a class="proj-link" href="PharmaAI-Consultant.html">View full case study
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="proj-vis preview-img" aria-label="AI sales assistant chatbot case study">
+            <img src="assets/pharma-preview.webp" alt="AI Sales Assistant Chatbot case study preview" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Medicament dashboard -->
+      <article class="proj reveal">
+        <div class="proj-grid">
+          <div class="proj-txt">
+            <span class="proj-tag"><span class="live"></span> Data UX · Pharma analytics</span>
+            <h3>Medicament — disease-insight analytics dashboard</h3>
+            <div class="role">UX Designer · Research, journey mapping, dashboard design</div>
+            <p class="desc">A dashboard that lets pharma teams read disease data at a glance — adverse-event severity, dropout prediction, and forecasts mapped across regions. I used interviews and journey mapping to align dense visualizations with what clinicians and analysts actually decide on.</p>
+            <div class="proj-outcome">
+              <div><div class="big">3</div><div class="cap">analysis modes: moderate · dropout · forecast</div></div>
+              <div><div class="big">Geo</div><div class="cap">region-level AE mapping and drill-down</div></div>
+            </div>
+            <div class="proj-links">
+              <a class="proj-link" href="medicament-portfolio.html">View full design
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="proj-vis preview-img" aria-label="Medicament analytics dashboard">
+            <img src="assets/medicament-preview.webp" alt="Medicament pharmaceutical analytics dashboard preview" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <!-- Coming soon: B2B SaaS -->
+      <article class="proj flip reveal">
+        <div class="proj-grid">
+          <div class="proj-txt">
+            <span class="proj-tag" style="color:var(--ink-3)"><span class="live" style="background:var(--ink-3)"></span> B2B SaaS · Coming soon</span>
+            <h3>More B2B SaaS platforms — case studies in progress</h3>
+            <div class="role">UX Designer · Cloud assessment, supply chain &amp; finance BI</div>
+            <p class="desc">Deeper write-ups of my enterprise SaaS work — the cloud-assessment platform that retired 10 departments' worth of spreadsheets, the CMMS→SAP Fiori supply-chain migration, and the finance BI dashboards — are being written up as full case studies.</p>
+            <div class="proj-links">
+              <span class="proj-link muted">In the works — check back soon
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="proj-vis" aria-label="Coming soon">
+            <div class="mini-sch">
+              <svg viewBox="0 0 320 300" fill="none" aria-hidden="true">
+                <rect x="30" y="40" width="120" height="90" rx="10" fill="#fff" stroke="#e0dacd" stroke-width="1.5"/>
+                <rect x="170" y="40" width="120" height="90" rx="10" fill="#fff" stroke="#e0dacd" stroke-width="1.5"/>
+                <rect x="30" y="150" width="120" height="90" rx="10" fill="#fff" stroke="#e0dacd" stroke-width="1.5"/>
+                <rect x="170" y="150" width="120" height="90" rx="10" fill="#faf8f2" stroke="#c8621f" stroke-width="1.5" stroke-dasharray="6 5"/>
+                <text x="230" y="200" font-family="Fraunces, serif" font-size="30" fill="#c8621f" text-anchor="middle" font-style="italic">soon</text>
+                <rect x="44" y="56" width="50" height="6" rx="3" fill="#cfc8b8"/>
+                <rect x="44" y="70" width="80" height="5" rx="2.5" fill="#e0dacd"/>
+                <rect x="184" y="56" width="50" height="6" rx="3" fill="#cfc8b8"/>
+                <rect x="184" y="70" width="80" height="5" rx="2.5" fill="#e0dacd"/>
+                <rect x="44" y="166" width="50" height="6" rx="3" fill="#cfc8b8"/>
+                <rect x="44" y="180" width="80" height="5" rx="2.5" fill="#e0dacd"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPROACH ===== -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">How I work</div>
+        <h2 class="sec">Three things I do on every project.</h2>
+      </div>
+      <p class="sec-note" style="color:rgba(243,239,230,.7)">Enterprise work rewards discipline over flourish. This is the discipline.</p>
+    </div>
+    <div class="stances reveal">
+      <div class="stance">
+        <div class="n">01</div>
+        <h3>Start with the people, not the data</h3>
+        <p>Interviews, personas, journey maps and empathy work come first — so the interface is built around the decision a broker, rep or analyst is actually trying to make.</p>
+      </div>
+      <div class="stance">
+        <div class="n">02</div>
+        <h3>Turn requirements into an architecture</h3>
+        <p>I translate messy, competing requirements into a clear information architecture and flows — securing stakeholder buy-in by aligning specs with real user needs before a pixel is drawn.</p>
+      </div>
+      <div class="stance">
+        <div class="n">03</div>
+        <h3>Ship a system, not screens</h3>
+        <p>High-fidelity, dev-ready designs backed by a reusable design system — so what I hand off stays consistent, scales, and survives contact with engineering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OTHER WORK ===== -->
+<section id="more-work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow steel">Also shipped</div>
+        <h2 class="sec">Enterprise work, measured in outcomes.</h2>
+      </div>
+      <p class="sec-note">Three more engagements at HCLTech where research-led design moved the numbers.</p>
+    </div>
+    <div class="also">
+      <div class="also-card reveal">
+        <div class="loc">Cloud SaaS · USA</div>
+        <h4>Retiring the spreadsheet workflow</h4>
+        <p>Led user research and process re-engineering across 10 departments, then delivered hi-fi screens for a cloud-assessment platform.</p>
+        <div class="res">30% better customer experience →</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="loc">Automotive · USA</div>
+        <h4>CMMS → SAP Fiori migration</h4>
+        <p>Redesigned supply-chain portals with a user-centric approach, aligning workflows to business and user needs to win stakeholder approval.</p>
+        <div class="res">Higher usability &amp; adoption →</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="loc">Finance · Philippines</div>
+        <h4>Interactive Power BI dashboards</h4>
+        <p>Designed KPI dashboards with drill-downs, filters and dynamic charts, mapped to requirements for a smooth developer handoff.</p>
+        <div class="res">35% better customer experience →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAPABILITIES ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Capabilities</div>
+        <h2 class="sec">The toolkit behind the work.</h2>
+      </div>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-col reveal">
+        <h3>Research &amp; strategy</h3>
+        <div class="cap-tags">
+          <span class="tag">User Research</span><span class="tag">User Interviews</span><span class="tag">Persona Creation</span>
+          <span class="tag">User Journey Mapping</span><span class="tag">Empathy Mapping</span><span class="tag">Competitor Analysis</span>
+          <span class="tag">Heuristic Evaluation</span><span class="tag">Usability Testing</span><span class="tag">A/B Testing</span>
+          <span class="tag">Quantitative Research</span><span class="tag">Design Thinking</span><span class="tag">Problem Solving</span>
+        </div>
+      </div>
+      <div class="cap-col reveal">
+        <h3>Design &amp; delivery</h3>
+        <div class="cap-tags">
+          <span class="tag">UX Design</span><span class="tag">UI Design</span><span class="tag">Information Architecture</span>
+          <span class="tag">Wireframing</span><span class="tag">Prototyping</span><span class="tag">Human-Centered Design</span>
+          <span class="tag">Mobile &amp; Web Design</span><span class="tag">Design Systems</span><span class="tag">HTML / CSS</span>
+        </div>
+        <h3 style="margin-top:36px">Tools</h3>
+        <div class="tools-row">
+          <span class="tool">Figma</span><span class="tool">Adobe XD</span><span class="tool">Sketch</span>
+          <span class="tool">InVision</span><span class="tool">Anima</span><span class="tool">Wireframe.cc</span><span class="tool">Photoshop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="eyebrow steel">About</div>
+        <p class="about-lead" style="margin-top:16px">I craft seamless digital journeys by <em>empathizing with users</em>, running the research, and designing interfaces that make hard systems feel obvious.</p>
+        <div class="about-body">
+          <p>I'm a Product Designer with a Master of Design from IISc Bengaluru. Since 2022 I've been at HCLTech, working across insurance, cloud, automotive, pharma and finance — most of it dense, regulated, B2B, and none of it simple.</p>
+          <p>I work fluently with cross-functional teams — designers, developers and PMs — and I care most about the moment a tangled requirement finally clicks into a flow that just makes sense. That's the job: not decoration, but clarity that holds up under real-world load.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="cred">
+          <div class="cred-item">
+            <div class="yr">2022 — Present</div>
+            <h4>UX Designer</h4>
+            <p>HCLTech · Bengaluru</p>
+          </div>
+          <div class="cred-item">
+            <div class="yr">2020 — 2022</div>
+            <h4>M.Des, Product Design &amp; Manufacturing</h4>
+            <p>Indian Institute of Science, Bangalore</p>
+          </div>
+          <div class="cred-item">
+            <div class="yr">2015 — 2019</div>
+            <h4>B.Tech, Textile Chemistry</h4>
+            <p>UP Textile Technology Institute, Kanpur</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Have a complex system that needs <em>making clear?</em></h2>
+      <a href="mailto:varun1998singh@gmail.com" class="contact-mail">varun1998singh@gmail.com</a>
+      <div class="contact-links">
+        <a class="clink" href="https://www.linkedin.com/in/varunsingh78" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="clink" href="https://www.behance.net/varunsingh78" target="_blank" rel="noopener">Portfolio</a>
+        <a class="clink" href="tel:+918922837985">+91 89228 37985</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Varun Singh · Product Designer</span>
+    <span class="mono">Designed &amp; built with intent — Bengaluru</span>
+  </div>
+</footer>
+
+<script>
+  // nav shadow on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
